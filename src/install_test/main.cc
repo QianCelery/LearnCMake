@@ -1,7 +1,7 @@
 /**
  * @file main.cc
  * @author your name (you@domain.com)
- * @brief 练习使用cmake构建多个源文件，多个目录的项目，自定义编译选项
+ * @brief 练习使用cmake构建多个源文件，多个目录的项目
  * @version 0.1
  * @date 2022-10-13
  * 

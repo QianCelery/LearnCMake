@@ -1,7 +1,7 @@
 /**
  * @file main.cc
  * @author your name (you@domain.com)
- * @brief 练习使用cmake构建多个源文件，多个目录的项目，自定义编译选项
+ * @brief 练习使用cmake构建多个源文件，多个目录的项目
  * @version 0.1
  * @date 2022-10-13
  * 
@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include "config.h"
 
-#ifdef USE_MYMATH
+#ifndef HAVE_POW
     #include "math/math_functions.h"
 #else
     #include <math.h>
@@ -22,6 +22,8 @@
 int main(int argc,  char **argv)
 {
     if (argc < 3) {
+        // print version info
+        printf("%s Version %d.%d\n", argv[0], Demo_VERSION_MAJOR, Demo_VERSION_MINOR);
         printf("Usage: %s base exponent \n", argv[0]);
         return 1;
     }
@@ -30,12 +32,12 @@ int main(int argc,  char **argv)
     int exponent = atoi(argv[2]);
     
 
-#ifdef USE_MYMATH
-    printf("Now we use our own Math libary. \n");
-    double result = power(base, exponent);
-#else
+#ifdef HAVE_POW
     printf("Now we use standard libary. \n ");
     double result = pow(base, exponent);
+#else
+    printf("Now we use our own Math libary. \n");
+    double result = power(base, exponent);
 #endif
 
     printf("%g ^ %d is %g\n", base, exponent, result);
